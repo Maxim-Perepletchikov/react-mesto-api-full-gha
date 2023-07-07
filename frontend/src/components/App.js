@@ -59,7 +59,7 @@ function App() {
           status: true,
           text: 'Вы успешно зарегистрировались!'
         })
-        navigate('/sign-in', {replace: true})
+        navigate('/signin', {replace: true})
       })
       .catch(() => {
         setMessage({
@@ -73,7 +73,7 @@ function App() {
   function handleLogin(values) {
     auth.authorize(values.emailInput, values.passwordInput)
     .then(res => {
-      localStorage.setItem('jwt', res.token)
+      localStorage.setItem('jwt', res.jwt)
       setLoggedIn(true)
       navigate('/', {replace: true})
       setUserEmail(values.emailInput)
@@ -93,6 +93,7 @@ function App() {
     if(jwt) {
       auth.getContent(jwt)
         .then(res => {
+          console.log(res);
           setLoggedIn(true)
           setUserEmail(res.data.email)
           navigate('/', {replace: true})
@@ -107,7 +108,7 @@ function App() {
     setLoggedIn(false)
     localStorage.removeItem('jwt')
     setUserEmail('')
-    navigate('/sign-in')
+    navigate('/signin')
   }
 
   useEffect(() => {
@@ -246,8 +247,8 @@ function App() {
       <div className="page">
         <Header userEmail={userEmail} onLogout={handleLogout} />
         <Routes>
-          <Route path="/sign-up" element={<Register onRegister={handleRegister} />}  />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin}/>} />
+          <Route path="/signup" element={<Register onRegister={handleRegister} />}  />
+          <Route path="/signin" element={<Login onLogin={handleLogin}/>} />
           <Route
             path="/"
             element={
@@ -269,7 +270,7 @@ function App() {
             }
           />
           <Route path='*' element={
-            loggedIn ? <Navigate to="/"/> : <Navigate to="/sign-in"/>
+            loggedIn ? <Navigate to="/"/> : <Navigate to="/signin"/>
           } />
         </Routes>
 

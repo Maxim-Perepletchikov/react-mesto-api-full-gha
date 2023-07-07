@@ -20,7 +20,7 @@ node_modules
 .vscode
 
 # production
-/build
+build
 
 # misc
 .DS_Store

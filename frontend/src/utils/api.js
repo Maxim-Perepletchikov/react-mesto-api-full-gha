@@ -1,8 +1,8 @@
 const options = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-59',
+  url: 'http://localhost:3000',
   headers: {
-    authorization: '30812f22-45b0-4eb1-a698-1f92d9f66ac5',
     'Content-Type': 'application/json',
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
   },
 }
 
@@ -49,6 +49,7 @@ class Api {
   }
 
   getInfoProfile() {
+    console.log(this._auth);
     return fetch(`${this._url}/users/me`, {
       headers: this._header,
     }).then(this._checkResponse)
@@ -90,4 +91,6 @@ class Api {
   }
 }
 
-export default new Api(options)
+const api = new Api(options)
+
+export default api;
