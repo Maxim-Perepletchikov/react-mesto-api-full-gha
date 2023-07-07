@@ -87,15 +87,16 @@ const login = (req, res, next) => {
           const jwt = jsonWebToken.sign(
             { _id: user._id },
             'SECRET',
-            // { expiresIn: '7d' },
+            { expiresIn: '7d' },
           );
-          res.cookie('jwt', jwt, {
-            maxAge: 360000,
-            httpOnly: true,
-            sameSite: true,
-          });
-          const { password: _, ...userNoPass } = user.toObject();
-          return res.send({ data: userNoPass });
+          // res.cookie('jwt', jwt, {
+          //   maxAge: 360000,
+          //   httpOnly: true,
+          //   sameSite: true,
+          // });
+          // const { password: _, ...userNoPass } = user.toObject();
+          // return res.send({ data: userNoPass });
+          return res.send({ jwt });
         });
     })
     .catch(next);
