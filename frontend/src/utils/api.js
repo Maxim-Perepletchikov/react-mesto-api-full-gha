@@ -49,7 +49,6 @@ class Api {
   }
 
   getInfoProfile() {
-    console.log(this._auth);
     return fetch(`${this._url}/users/me`, {
       headers: this._header,
     }).then(this._checkResponse)
