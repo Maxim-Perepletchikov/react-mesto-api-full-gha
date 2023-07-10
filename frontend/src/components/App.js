@@ -124,6 +124,9 @@ function App() {
       api
         .getInitialCards()
         .then((data) => {
+          data.forEach(element => {
+            console.log(element)
+          });
           setCards(
             data.map((item) => ({
               _id: item._id,
