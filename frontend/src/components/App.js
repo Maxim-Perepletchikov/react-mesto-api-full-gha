@@ -93,7 +93,6 @@ function App() {
     if(jwt) {
       auth.getContent(jwt)
         .then(res => {
-          console.log(res);
           setLoggedIn(true)
           setUserEmail(res.data.email)
           navigate('/', {replace: true})
@@ -117,16 +116,14 @@ function App() {
       api
         .getInfoProfile()
         .then((data) => {
+          console.log(data);
           setCurrentUser(data)
         })
         .catch(console.log)
   
       api
         .getInitialCards()
-        .then((data) => {
-          data.forEach(element => {
-            console.log(element)
-          });
+        .then(({data}) => {
           setCards(
             data.map((item) => ({
               _id: item._id,

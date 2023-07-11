@@ -29,7 +29,6 @@ const auth = (req, res, next) => {
     next(new AuthorizationError('Необходима авторизация'));
     return;
   }
-
   req.user = payload;
 
   next();

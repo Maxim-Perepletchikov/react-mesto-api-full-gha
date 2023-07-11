@@ -24,12 +24,12 @@ router.post('/signin', celebrate({
   }),
 }), login);
 
-router.use(auth);
+// router.use(auth);
 
-router.use(userRoutes);
-router.use(cardRoutes);
+router.use('/users', auth, userRoutes);
+router.use('/cards', auth, cardRoutes);
 
-router.use('/*', (req, res, next) => {
+router.use('*', auth, (req, res, next) => {
   next(new NotFoundError('Маршрут не найден'));
 });
 

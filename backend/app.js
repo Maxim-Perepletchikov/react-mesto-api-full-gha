@@ -4,9 +4,9 @@ const rateLimit = require('express-rate-limit');
 // const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
-const cors = require('cors');
-// const cors = require('./middlewares/cors');
-const router = require('./routes');
+// const cors = require('cors');
+const cors = require('./middlewares/cors');
+const routes = require('./routes');
 const { errorHandler } = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -28,17 +28,17 @@ app.use(limiter);
 app.use(express.json());
 // app.use(cookieParser());
 app.use(helmet());
-// app.use(cors);
-app.use(cors({
-  methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:3001',
-  ],
-}));
+app.use(cors);
+// app.use(cors({
+//   methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'],
+//   origin: [
+//     'http://localhost:3000',
+//     'http://localhost:3001',
+//   ],
+// }));
 app.use(requestLogger);
 
-app.use(router);
+app.use(routes);
 
 app.use(errorLogger);
 

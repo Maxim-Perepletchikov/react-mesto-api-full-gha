@@ -9,23 +9,23 @@ const {
 } = require('../controllers/users');
 const { LINK_REGEX } = require('../utils/constants');
 
-userRouter.get('/users', getUsers);
-userRouter.get('/users/me', getCurrentUser);
+userRouter.get('/', getUsers);
+userRouter.get('/me', getCurrentUser);
 
-userRouter.get('/users/:id', celebrate({
+userRouter.get('/:id', celebrate({
   params: Joi.object().keys({
     id: Joi.string().required().hex().length(24),
   }),
 }), getUser);
 
-userRouter.patch('/users/me', celebrate({
+userRouter.patch('/me', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     about: Joi.string().required().min(2).max(30),
   }),
 }), updateUserInfo);
 
-userRouter.patch('/users/me/avatar', celebrate({
+userRouter.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
     avatar: Joi.string().required().regex(LINK_REGEX),
   }),
