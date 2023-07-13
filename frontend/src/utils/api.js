@@ -2,14 +2,13 @@ const options = {
   url: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
   },
 }
 
 class Api {
   constructor(options) {
     this._url = options.url
-    this._header = options.headers
   }
 
   _checkResponse(res) {
@@ -22,14 +21,20 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkResponse)
   }
 
   setCard({ name, link }) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify({
         name: name,
         link: link,
@@ -40,7 +45,10 @@ class Api {
   setInfoProfile({ name, about }) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify({
         name: name,
         about: about,
@@ -50,35 +58,50 @@ class Api {
 
   getInfoProfile() {
     return fetch(`${this._url}/users/me`, {
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkResponse)
   }
 
   setLike(id) {
     return fetch(`${this._url}/cards/likes/${id}`, {
       method: 'PUT',
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkResponse)
   }
 
   deleteLike(id) {
     return fetch(`${this._url}/cards/likes/${id}`, {
       method: 'DELETE',
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkResponse)
   }
 
   deleteCard(id) {
     return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._checkResponse)
   }
 
   setAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._header,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify({
         avatar,
       }),

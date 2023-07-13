@@ -115,8 +115,7 @@ function App() {
       setIsLoading(true)
       api
         .getInfoProfile()
-        .then((data) => {
-          console.log(data);
+        .then(({data}) => {
           setCurrentUser(data)
         })
         .catch(console.log)
