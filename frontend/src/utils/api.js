@@ -66,7 +66,7 @@ class Api {
   }
 
   setLike(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ class Api {
   }
 
   deleteLike(id) {
-    return fetch(`${this._url}/cards/likes/${id}`, {
+    return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
