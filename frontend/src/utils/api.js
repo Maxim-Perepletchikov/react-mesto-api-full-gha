@@ -1,9 +1,9 @@
 const options = {
   url: 'http://localhost:3000',
-  headers: {
+  /* headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-  },
+  }, */
 }
 
 class Api {

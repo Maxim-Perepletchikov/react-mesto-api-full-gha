@@ -169,13 +169,13 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id)
+    const isLiked = card.likes.some((i) => i === currentUser._id)
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((c) => (c._id === card._id ? newCard.data : c))
         )
       })
       .catch(console.log)
@@ -195,8 +195,8 @@ function App() {
     setButtonText('Сохранение...')
     api
       .setInfoProfile(userInfo)
-      .then((newUserInfo) => {
-        setCurrentUser(newUserInfo)
+      .then(({data}) => {
+        setCurrentUser(data)
         closeAllPopups()
       })
       .catch(console.log)
@@ -207,8 +207,8 @@ function App() {
     setButtonText('Сохранение...')
     api
       .setAvatar(avatar)
-      .then((newAvatar) => {
-        setCurrentUser(newAvatar)
+      .then(({data}) => {
+        setCurrentUser(data)
         closeAllPopups()
       })
       .catch(console.log)
@@ -219,8 +219,8 @@ function App() {
     setButtonText('Сохранение...')
     api
       .setCard(card)
-      .then((newCard) => {
-        setCards([newCard, ...cards])
+      .then(({data}) => {
+        setCards([data, ...cards])
         closeAllPopups()
       })
       .catch(console.log)

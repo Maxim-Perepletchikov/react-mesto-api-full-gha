@@ -3,6 +3,7 @@
   background-image: url(../../../images/profile__edit-icon.svg);
   background-repeat: no-repeat;
   background-position: 40% 50%;
+  border: none
 }
 
 /* .profile__container-avatar::before {
