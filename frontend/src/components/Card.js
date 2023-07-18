@@ -30,7 +30,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
   return (
     <article className="card">
-      <img className="card__image" src={card.link} alt={card.name} onClick={/* handleClick */() => {console.log(card.likes, isLiked, currentUser._id)}}/>
+      <img className="card__image" src={card.link} alt={card.name} onClick={handleClick}/>
       <div className="card__panel">
         <h2 className="card__title">{card.name}</h2>
         <button className={cardLikeButtonClassName} onClick={handleLikeClick} type="button" aria-label="Лайк"></button>
