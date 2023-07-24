@@ -1,5 +1,6 @@
 // export const BASE_URL = 'https://auth.nomoreparties.co'
-export const BASE_URL = 'http://localhost:3000'
+// export const BASE_URL = 'http://localhost:3000'
+export const BASE_URL = 'https://api.mymesto.nomoreparties.sbs'
 
 const checkResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Ошибка: ${res.statusText}`)
