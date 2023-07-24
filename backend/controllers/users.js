@@ -6,6 +6,8 @@ const ValidationError = require('../errors/ValidationError');
 const ConflictError = require('../errors/ConflictError');
 const AuthorizationError = require('../errors/AuthorizationError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send({ data: users }))
@@ -86,7 +88,7 @@ const login = (req, res, next) => {
           }
           const jwt = jsonWebToken.sign(
             { _id: user._id },
-            'SECRET',
+            NODE_ENV === 'production' ? JWT_SECRET : 'SECRET',
             { expiresIn: '7d' },
           );
           // res.cookie('jwt', jwt, {
