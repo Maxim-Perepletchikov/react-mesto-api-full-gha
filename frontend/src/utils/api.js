@@ -1,5 +1,6 @@
 const options = {
-  url: 'http://localhost:3000',
+  // url: 'http://localhost:3000',
+  url: 'https://api.mymesto.nomoreparties.sbs',
   /* headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('jwt')}`,
