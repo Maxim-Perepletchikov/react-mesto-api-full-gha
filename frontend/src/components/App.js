@@ -263,9 +263,7 @@ function App() {
                 onCardDelete={handleCardDeleteRequest}
                 isLoading={isLoading}
                 spinner={spinner}
-              /> : <div className='spinner'>
-              <img src={spinner} alt='анимация загрузки'/>
-            </div>
+              /> : <Navigate to="/signin"/>
             }
           />
           <Route path='*' element={
