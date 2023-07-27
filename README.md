@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.6.124
+IP 158.160.6.124
 
 Frontend https://mymesto.nomoreparties.sbs
 
