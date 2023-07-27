@@ -120,7 +120,7 @@ const updateUserInfo = (req, res, next) => {
         next(new ValidationError('Переданы некорректные данные'));
         return;
       }
-      next();
+      next(err);
     });
 };
 
@@ -135,7 +135,13 @@ const updateAvatar = (req, res, next) => {
     },
   )
     .then((newAvatar) => res.send({ data: newAvatar }))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new ValidationError('Переданы некорректные данные'));
+        return;
+      }
+      next(err);
+    });
 };
 
 module.exports = {
